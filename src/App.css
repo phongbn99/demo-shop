@@ -27,7 +27,71 @@
 .App-link {
   color: #61dafb;
 }
+.star {
+  font-size: 25px; /* Kích thước của biểu tượng sao */
+  color: gold; /* Màu của sao */
+  margin: 0 8px;
+  
+}
+.header{
+  background-color: #61fba9;
 
+}
+
+.aside{
+  float: left;
+  display: inline;
+  align-items: center;
+  padding-top: 30px;
+  margin: 0 35px;
+  font-weight: 600;
+}
+.aside-cart{
+  float: left;
+  display: flex;
+  margin: 0 0px 20px ;
+}
+.aside-profile{
+  float: left;
+  margin: 0 0px 20px ;
+
+}
+.aside-profile ul p {
+  font-size: 20px;
+  margin-left: 200px;
+  margin-top: -70px;
+  font-family: italic;
+
+
+}
+
+.aside-cart button{
+margin: 0 4px;
+width: 25px;
+text-align: center;
+}
+  .form-group{
+    margin: 0px 0px 18px 10px;
+  }
+.aside button{
+  margin: 0 5px;
+  background-color: red;
+  border: 0px solid;
+  border-radius: 5%;
+  height: 35px;
+  color: white;
+
+}
+.icon{
+  font-size: 20px;
+  margin-left: 880px;
+  margin-top: -20px;
+}
+.filter{
+  font-size: 25px ;
+  margin-left: 905px;
+  margin-top: -25px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -36,3 +100,4 @@
     transform: rotate(360deg);
   }
 }
+
