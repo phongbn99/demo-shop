@@ -23,28 +23,36 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+.product-rating{
+margin-left: px;
+}
 .App-link {
   color: #61dafb;
 }
 .star {
   font-size: 25px; /* Kích thước của biểu tượng sao */
   color: gold; /* Màu của sao */
-  margin: 0 8px;
-  
+  margin: 0 5px;
+ 
 }
 .header{
   background-color: #61fba9;
 
 }
-
+.edit{
+  justify-items: auto;
+}
 .aside{
   float: left;
   display: inline;
-  align-items: center;
+
   padding-top: 30px;
-  margin: 0 35px;
+  margin: 0 15px;
   font-weight: 600;
+  height: 450px;
+}
+.aside img {
+ margin: 0 1px;
 }
 .aside-cart{
   float: left;
@@ -56,6 +64,7 @@
   margin: 0 0px 20px ;
 
 }
+
 .aside-profile ul p {
   font-size: 20px;
   margin-left: 200px;
@@ -64,22 +73,77 @@
 
 
 }
+.aside p {
+  margin : 0 5px;
+  margin-top: 10px;
+  font-size: 14px;
 
+}
+.demo-logo-vertical{
+  border-color: black;
+}
 .aside-cart button{
 margin: 0 4px;
 width: 25px;
 text-align: center;
 }
   .form-group{
-    margin: 0px 0px 18px 10px;
+    margin: 0px 0px 30px 10px;
   }
+  .buy-button{
+width: 200.87px;
+height: 48px;
+top: 473px;
+left: 511.5px;
+background: rgba(0, 194, 255, 1);
+border-color: rgba(0, 194, 255, 1);
+border-radius: 10px;
+color:white;
+font-family: Roboto;
+font-size: 20px;
+font-weight: 700;
+line-height: 16px;
+letter-spacing: 0em;
+text-align: center;
+
+  }
+ .add-to-cart-button{
+  width: 200.87px;
+  height: 48px;
+  top: 473px;
+  left: 511.5px;
+  background: rgba(0, 255, 25, 1);
+  border-color: rgba(0, 255, 25, 1);
+  border-radius: 10px;
+  color:white;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+
+
+ } 
+ .star-1{
+  font-size: 32px;
+  color: gold;
+  margin: 0 5px; 
+  
+ }
 .aside button{
-  margin: 0 5px;
-  background-color: red;
-  border: 0px solid;
-  border-radius: 5%;
-  height: 35px;
-  color: white;
+  margin: 0 10px;
+
+
+  
+
+}
+.icon-profile{
+
+
+
+}
+.button-container{
 
 }
 .icon{

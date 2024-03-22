@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Layout } from 'antd';
 import { TiShoppingCart } from "react-icons/ti";
-import {ProductItems} from "../../common/type.ts"
-const { Header, Content } = Layout;
+import { ProductItems } from "../../common/type.ts"
+const { Header, Content,Footer} = Layout;
 
 const Cart = () => {
   const navigate = useNavigate();
@@ -11,46 +11,30 @@ const Cart = () => {
   const [cartItems, setCartItems] = useState(0);
   const [data, setData] = useState([
     {
-      title: "Iphone 15 Pro Max",
-      describe: "Chiếc điện thoại thông minh mới của Apple được ra mắt vào tháng 9 năm 2023. Điện thoại có thiết kế sang trọng, màn hình OLED 6,7 inch, Apple A17 mạnh mẽ, camera sau 48 MP và camera trước 48 MP.",
-      price: 50000000 
-    },
-    {
-      title: "Iphone 15 Pro Max",
-      describe: "Chiếc điện thoại thông minh mới của Apple được ra mắt vào tháng 9 năm 2023. Điện thoại có thiết kế sang trọng, màn hình OLED 6,7 inch, Apple A17 mạnh mẽ, camera sau 48 MP và camera trước 48 MP.",
+      title: "Điện thoại Samsung Galaxy A31",
+      describe: [
+        "Galaxy A31 là mẫu smartphone tầm trung mới ra mắt đầu năm 2020",
+        " của Samsung.Thiết bị gây ấn tượng mạnh với ngoại hình thời trang, ",
+        "cụm 4 camera đa chức năng, vân tay dưới màn hình và viên pin khủng lên đến 5000mAh."
+      ],
       price: 50000000
     },
     {
-      title: "Iphone 15 Pro Max",
-      describe: "Chiếc điện thoại thông minh mới của Apple được ra mắt vào tháng 9 năm 2023. Điện thoại có thiết kế sang trọng, màn hình OLED 6,7 inch, Apple A17 mạnh mẽ, camera sau 48 MP và camera trước 48 MP.",
+      title: "Điện thoại Samsung Galaxy A31",
+      describe: [
+        "Galaxy A31 là mẫu smartphone tầm trung mới ra mắt đầu năm 2020",
+        " của Samsung.Thiết bị gây ấn tượng mạnh với ngoại hình thời trang, ",
+        "cụm 4 camera đa chức năng, vân tay dưới màn hình và viên pin khủng lên đến 5000mAh."
+      ],
       price: 50000000
     },
-    {
-      title: "Iphone 15 Pro Max",
-      describe: "Chiếc điện thoại thông minh mới của Apple được ra mắt vào tháng 9 năm 2023. Điện thoại có thiết kế sang trọng, màn hình OLED 6,7 inch, Apple A17 mạnh mẽ, camera sau 48 MP và camera trước 48 MP.",
-      price: 50000000
-    },
-    {
-      title: "Iphone 15 Pro Max",
-      describe: "Chiếc điện thoại thông minh mới của Apple được ra mắt vào tháng 9 năm 2023. Điện thoại có thiết kế sang trọng, màn hình OLED 6,7 inch, Apple A17 mạnh mẽ, camera sau 48 MP và camera trước 48 MP.",
-      price: 50000000
-    }
+
+
   ]);
-  
+
   const handleIncreaseQuantity = () => {
-    fetch("http://192.168.1.13:7154/WeatherForecast")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          console.log(result);
-        },
-        (error) => {
-          console.log(error)
-        }
-      )
-  
     setQuantity(quantity + 1);
-  setCartItems(cartItems + 1);
+    setCartItems(cartItems + 1);
   };
 
   const handleDecreaseQuantity = () => {
@@ -63,44 +47,47 @@ const Cart = () => {
   return (
     <div className='aside-cart'>
       <Layout>
-        <Header style={{ width: '100%', background: 'white', fontSize: '13px', marginBottom: '0px' }}>
-          <h2>Cart Page</h2>
+        <Header style={{ width: '100%', background: 'white', fontSize: '13px', marginBottom: '2px' }}>
+          <h2>Cart</h2>
         </Header>
-        <div style={{ position: 'relative' }}>
-          <TiShoppingCart style={{ marginLeft: '951px', fontSize: '25px', cursor: 'pointer' }} />
-          {cartItems > 0 && (
-            <div style={{ position: 'absolute', top: '-8px', right: '-8px', background: 'red', borderRadius: '50%', width: '20px', height: '20px', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white', fontSize: '14px' }}>
-              {cartItems}
-            </div>
-          )}
-        </div>
-        <Content style={{ background: "white" }}>
+        <p style={{ paddingLeft: "900px" }}>2 items in bag</p>
+        <Content style={{ background: "white", width: '1084px' }}>
           <ul>
-          {data.map(item => (
-            <div className='aside-cart'>
-              <img style={{ height: '180px' }} src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-15-pro-max_3.png"
-                alt="Iphone 15 Pro Max" />
-              <p>
-                <b>{item.title}</b>
-                <br />
-                {item.describe}
-                <p>Số lượng</p>
-                <div className="button-container">
-                  <button type="button" onClick={handleDecreaseQuantity}> - </button>
-                  <span>{quantity}</span>
-                  <button type="button" onClick={handleIncreaseQuantity}> + </button>
-                </div>
-                Giá bán : <b>{item.price}</b></p>
-              <br />
-              SubTotal  29.990.000   <br/>
-              Tax    1.000.000    <br/>
-             Total   30.990.000   <br/>
-            </div>
-          ))}
-          </ul>
+            {data.map(item => (
+              <div className='aside-cart'>
+                <img style={{ height: '200px' }} src="https://netpc.uy/wp-content/uploads/2021/02/2-59.jpg"
+                  alt="Iphone 15 Pro Max" />
+                <p>
+                <hr style={{ border: "0.1 px solid black", margin: "20px 0" }} />
+                  <b style={{fontSize:'18px'}}>{item.title}</b><br />
 
+                  <p style={{fontSize:'16px'}}>{item.describe}</p>
+
+              
+                  <div className="button-container">
+                    <div style={{ display: 'flex', paddingLeft: "680px" }}>
+                      <div style={{ margin: "0 25px",fontSize:'18px' }} className="increase-button" onClick={handleDecreaseQuantity}> - </div>
+                      <span style={{ fontSize: "15px" }}>{quantity}</span>
+                      <div style={{ margin: "0 25px",fontSize:'18px'  }} className="increase-button" onClick={handleIncreaseQuantity}> + </div>
+                    </div>
+                  </div>
+                  Giá bán : <b style={{ fontSize: "18px" }}>{item.price}</b></p>
+                
+                <br />
+              
+              </div>
+            ))}
+            <div style={{ paddingLeft: "800px" }} className="form-group">
+            <label htmlFor=""><b>SubTotal</b> <span style={{ display: 'inline-block', width: '100px', textAlign: 'right', marginLeft: '20px'  }}>50,000,000 VND</span></label><br />
+            <label htmlFor=""><b>Tax</b> <span style={{ display: 'inline-block', width: '100px', textAlign: 'right', marginLeft: '55px' }}>1,000,000 VND</span></label><br />
+            <label htmlFor=""><b>Total</b> <span style={{ display: 'inline-block', width: '100px', textAlign: 'right', marginLeft: '45px' }}>60,000,000 VND</span></label>
+          </div>
           
+          
+          
+          </ul>
         </Content>
+        
       </Layout>
     </div>
 

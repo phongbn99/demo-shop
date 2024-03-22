@@ -1,42 +1,28 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Layout, Select } from 'antd';
-import { FaFilter } from "react-icons/fa6";
-import { IoSearchOutline } from "react-icons/io5";
-import {ProductItem} from "../../common/type.ts"
+import { Layout } from 'antd';
+import { TiShoppingCart } from "react-icons/ti";
+
 const { Header, Content } = Layout;
-const { Option } = Select;
 
 const Shop = () => {
   const navigate = useNavigate();
-  const [showMessage, setShowMessage] = useState(false);
-  const [showFilter, setShowFilter] = useState(false);
+  const [showMessage, setShowMessage] = useState(false); // State để kiểm soát việc hiển thị biểu tượng nhấp nháy
   const [data, setData] = useState([
     {
-      title: "Iphone 15 Pro Max",
-      price: 50000000
+      title: "Điện thoại Samsung Galaxy A31",
+      price: 50000000,
+      describe: [
+       "Galaxy A31 là mẫu smartphone tầm trung mới ra mắt đầu năm 2020",
+        "của Samsung.Thiết bị gây ấn tượng mạnh với ngoại hình thời trang, ",
+        "cụm 4 camera đa chức năng, vân tay dưới màn hình và viên pin khủng."
+      ],
     },
-    {
-      title: "Iphone 15 Pro Max",
-      price: 50000000
-    },
-    {
-      title: "Iphone 15 Pro Max",
-      price: 50000000
-    },
-    {
-      title: "Iphone 15 Pro Max",
-      price: 50000000
-    },
-    {
-      title: "Iphone 15 Pro Max",
-      price: 50000000
-    },
-   
+    
   ]);
 
   const handleBuyNow = () => {
-    fetch("http://192.168.1.13:7234/WeatherForecast")
+    fetch("http://192.168.1.7:7154/WeatherForecast")
       .then(res => res.json())
       .then(
         (result) => {
@@ -46,16 +32,16 @@ const Shop = () => {
           console.log(error)
         }
       )
-    // navigate('/cart');
+    navigate('/cart');
   };
 
   const handleAddToCart = () => {
     console.log('Đã thêm vào giỏ hàng');
-    setShowMessage(true);
+    setShowMessage(true); // Kích hoạt hiển thị biểu tượng nhấp nháy
     setTimeout(() => {
-      setShowMessage(false);
+      setShowMessage(false); // Tắt hiển thị biểu tượng nhấp nháy sau 2 giây
     }, 2000);
-    fetch("http://192.168.1.13:7234/WeatherForecast")
+    fetch(" ")
     .then(res => res.json())
     .then(
       (result) => {
@@ -74,55 +60,37 @@ const Shop = () => {
   return (
     <div className="aside">
       <Layout>
-        <Header style={{ width: '2000px', background: 'white', fontSize: '10px', marginTop: '-44px', marginBottom: '-21px', marginLeft: '-28px' }}>
+        <Header style={{ width: '1070px', background: 'white', fontSize: '10px', marginTop: '-44px', marginBottom:'2px' }}>
           <h1>Shop Page</h1>
-        </Header>             
-        <input type="text" style={{ width: '200px', marginLeft: '700px' }} placeholder='Search...' required />
-        <IoSearchOutline className='icon' />
-        <FaFilter className='filter' onClick={() => setShowFilter(!showFilter)} />
-        <Content style={{ background: 'white' }}>
-          {showFilter && (
-            <div>
-              <div style={{ marginBottom: '10px' }}>
-                <label style={{ marginRight: '10px',marginLeft:'700px' }}>Price:</label>
-                <Select defaultValue="" style={{ width: 210,height:'25px',marginTop:10 }}>
-                  <Option value="">All</Option>
-                  <Option value="0-5000000">0 - 5,000,000 VND</Option>
-                  <Option value="5000000-10000000">5000000 - 10,000,000 VND</Option>
-                  <Option value="10000000-50000000">10000000 - 50,000,000 VND</Option>
+        </Header> 
+        {/* Biểu tượng giỏ hàng */}
+        <TiShoppingCart style={{ marginLeft: '951px', fontSize: '25px', cursor: 'pointer', animation: showMessage ? 'shake 0.5s' : 'none' }} />       
+        <Content style={{ background: 'white  ',height:450,paddingTop:'80px',width:"1070px" }}>
+        
+          <div className="product-row">
+            {data.map(item => (
+              <div key={item.title} className="product" style={{display:"flex"}}>
+                <img style={{ height: '250px',width:'450px' }} src="https://i.gadgets360cdn.com/large/samsung_galaxy_a31_image_1_1591257068271.jpg" alt="Iphone 15 Pro Max" onClick={handleProductClick} />
+                
+                <div style={{ marginLeft: '0px' }}>
                   
-              
-                </Select>
+                  <p style={{fontWeight: 'bold',fontSize:"18px"}}>{item.title}</p>
+                  {item.describe.map((desc, index) => (
+                    <p style={{fontSize:"16px"}} key={index}>{desc}</p>
+                  ))}
+                  <p style={{fontWeight: 'bold',fontSize:"17px"}}>Giá bán :  {item.price} </p>
+                  <div className="product-rating">
+                    {[...Array(5)].map((_, index) => (
+                      < span key={index} className="star">&#9733;</span>
+                    ))}
+                  </div>
+                  <button type="button" className="buy-button" onClick={handleBuyNow}>Mua ngay</button>
+                  <button type="button" className="add-to-cart-button" onClick={handleAddToCart}> Thêm vào giỏ hàng </button>
+                  {showMessage && <p>Đã thêm vào giỏ hàng!</p>}
+                </div>
               </div>
-              <div>
-                <label style={{ marginRight: '0px',marginLeft:'700px' }}>Rating:</label>
-                <Select defaultValue="" style={{ width: 100,height:'25px' }}>
-                  <Option value="">All</Option>
-                  <Option value="0">0 stars</Option>
-                  <Option value="1">1 stars</Option>
-                  <Option value="2">2 stars</Option>
-                  <Option value="3">3 stars</Option>
-                  <Option value="4">4 stars</Option>
-                  <Option value="5">5 stars</Option>
-                </Select>
-              </div>
-            </div>
-          )}
-          {data.map(item => (
-            <div className="aside">
-            <img style={{ height: '180px' }} src="https://cdn2.cellphones.com.vn/insecure/rs:fill:358:358/q:80/plain/https://cellphones.com.vn/media/catalog/product/i/p/iphone-15-pro-max_3.png" alt="Iphone 15 Pro Max" onClick={handleProductClick} />
-            <div className="product-rating">
-              {[...Array(5)].map((_, index) => (
-                <span key={index} className="star">&#9733;</span>
-              ))}
-            </div>
-            <p>{item.title}</p>
-            Giá bán :  {item.price} <br/>
-            <button type="button" onClick={handleBuyNow}>Mua ngay</button>
-            <button type="button" onClick={handleAddToCart}> + Thêm vào giỏ hàng </button>
-            {item.showMessage && <p>Đã thêm vào giỏ hàng!</p>}
+            ))}
           </div>
-          ))}
         </Content>
       </Layout>
     </div>
